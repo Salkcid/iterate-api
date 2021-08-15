@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import iterateAPICreator from './index';
+import iterateAPICreator from '../src/index';
 
 !(async () => {
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

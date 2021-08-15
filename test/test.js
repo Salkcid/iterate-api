@@ -1,10 +1,6 @@
 const fetch = require('node-fetch');
 const iterateAPICreator = require('../dist/index');
 
-console.log('iterateAPICreator =>', iterateAPICreator);
-
-console.log('qew');
-
 !(async () => {
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const q = (obj) => {

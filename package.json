@@ -4,10 +4,12 @@
   "description": "This package tries to streamline working with paginated APIs",
   "main": "index.js",
   "scripts": {
-    "testBuild": "node test/index.js",
-    "dev": "nodemon -e ts --watch src --exec npm run ts-dev",
-    "ts-dev": "ts-node src/test.ts",
-    "build": "tsc --project tsconfig.json"
+    "dev": "nodemon -e ts --watch src,test --exec npm run ts-dev",
+    "ts-dev": "ts-node test/test.ts",
+    "testBuild": "node test/test.js",
+    "build": "tsc --project tsconfig.json",
+    "postbuild": "node postbuild.js",
+    "server": "json-server --watch test/db.json"
   },
   "keywords": [
     "api",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@types/node": "^16.6.1",
     "@types/node-fetch": "^2.5.12",
+    "json-server": "^0.16.3",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.0",

@@ -33,5 +33,8 @@ async function copyPackageJsonToDist() {
 
 ; (async () => {
   await fixModuleResolution();
+  console.log('=> Fixed module resolution');
   await copyPackageJsonToDist();
+  console.log('=> Copy package.json to dist');
+  console.log('=> postbuild DONE');
 })();

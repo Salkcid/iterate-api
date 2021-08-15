@@ -1,0 +1,28 @@
+{
+  "name": "iterate-api",
+  "version": "1.0.0",
+  "description": "This package tries to streamline working with paginated APIs",
+  "main": "index.js",
+  "scripts": {
+    "testBuild": "node test/index.js",
+    "dev": "nodemon -e ts --watch src --exec npm run ts-dev",
+    "ts-dev": "ts-node src/test.ts",
+    "build": "tsc --project tsconfig.json"
+  },
+  "keywords": [
+    "api",
+    "iterate",
+    "pagination"
+  ],
+  "author": "Salkcid",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^16.6.1",
+    "@types/node-fetch": "^2.5.12",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  }
+}

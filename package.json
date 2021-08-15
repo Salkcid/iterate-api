@@ -9,6 +9,7 @@
     "testBuild": "node test/test.js",
     "build": "tsc --project tsconfig.json",
     "postbuild": "node postbuild.js",
+    "pu": "npm pu ./dist",
     "server": "json-server --watch test/db.json"
   },
   "keywords": [

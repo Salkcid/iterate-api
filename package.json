@@ -9,6 +9,8 @@
     "testBuild": "node test/test.js",
     "build": "tsc --project tsconfig.json",
     "postbuild": "node postbuild.js",
+    "puM": "npm version minor && npm run build && npm run pu",
+    "puP": "npm version patch && npm run build && npm run pu",
     "pu": "npm pu ./dist",
     "server": "json-server --watch test/db.json"
   },

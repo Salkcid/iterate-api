@@ -16,6 +16,10 @@
     "iterate",
     "pagination"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salkcid/iterate-api.git"
+  },
   "author": "Salkcid",
   "license": "ISC",
   "dependencies": {},

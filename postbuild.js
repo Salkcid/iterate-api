@@ -10,6 +10,7 @@ if (typeof exports.default === 'function') {
 
 const pathToDist = path.join(__dirname, 'dist');
 const pathToPackageJson = path.join(__dirname, 'package.json');
+const pathToREADME = path.join(__dirname, 'README.md');
 const newline = '\n';
 
 async function appendToFile(filePath, text) {
@@ -31,10 +32,16 @@ async function copyPackageJsonToDist() {
   return await fs.promises.copyFile(pathToPackageJson, path.join(pathToDist, 'package.json'))
 }
 
+async function copyReadmeToDist() {
+  return await fs.promises.copyFile(pathToREADME, path.join(pathToDist, 'README.md'))
+}
+
 ; (async () => {
   await fixModuleResolution();
   console.log('=> Fixed module resolution');
   await copyPackageJsonToDist();
   console.log('=> Copy package.json to dist');
+  await copyReadmeToDist();
+  console.log('=> Copy README to dist');
   console.log('=> postbuild DONE');
 })();

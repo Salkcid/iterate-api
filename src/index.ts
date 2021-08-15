@@ -36,15 +36,32 @@ export type Flow = {
 type MapperReturnType<T> = Promise<T> | T;
 export type Mapper<A, T> = (entry: A, previousEntries: T[], flow: Flow) => MapperReturnType<T | Symbol>;
 
-export default function iterateAPICreator<
-  RequiredQuery extends Partial<FullQuery>,
-  FullQuery extends RequiredQuery,
+export interface IterateAPI<RequiredQuery, FullQuery, APIEntry> {
+  <TransformedEntry>(
+    additionalQueryParams: Partial<FullQuery> | null,
+    mapper: (
+      entry: APIEntry,
+      previousEntries: TransformedEntry[],
+      flow: Flow,
+    ) => MapperReturnType<TransformedEntry | Symbol>
+  ): Promise<[TransformedEntry[], AggregateError<RequiredQuery & Partial<FullQuery>> | undefined]>;
+}
+
+export interface IterateAPICreator {
+  <RequiredQuery extends Partial<FullQuery>, FullQuery extends RequiredQuery, APIEntry>(
+    creatorParams: IterateAPICreatorParams<RequiredQuery, FullQuery, APIEntry>
+  ): IterateAPI<RequiredQuery, FullQuery, APIEntry>;
+}
+
+const iterateAPICreator: IterateAPICreator = <
+  RequiredQuery,
+  FullQuery,
   APIEntry,
->(creatorParams: IterateAPICreatorParams<RequiredQuery, FullQuery, APIEntry>) {
+  >(creatorParams: IterateAPICreatorParams<RequiredQuery, FullQuery, APIEntry>) => {
   return async function iterateAPI<TransformedEntry>(
     additionalQueryParams: Partial<FullQuery> | null,
-    mapper: Mapper<APIEntry, TransformedEntry>,
-  ): Promise<[TransformedEntry[], AggregateError<RequiredQuery & Partial<FullQuery>> | undefined]> {
+    mapper: Mapper<APIEntry, TransformedEntry>
+  ) {
     const {
       requiredQuery,
       fetchEntriesFromAPI,
@@ -121,3 +138,6 @@ export default function iterateAPICreator<
     return [transformedEntries, getError()];
   };
 }
+
+// @ts-ignore
+export = iterateAPICreator;

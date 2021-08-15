@@ -1,4 +1,4 @@
-export default class AggregateError<T extends Record<string, unknown>> extends Error {
+class AggregateError<T extends Record<string, unknown>> extends Error {
   private _errors;
 
   name = 'AggregateError';
@@ -20,3 +20,5 @@ export default class AggregateError<T extends Record<string, unknown>> extends E
     return this._errors.slice();
   }
 }
+
+export = AggregateError;

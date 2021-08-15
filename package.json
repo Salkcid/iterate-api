@@ -4,7 +4,7 @@
   "description": "This package tries to streamline working with paginated APIs",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -e ts --watch src,test --exec npm run ts-dev",
+    "dev": "nodemon -e ts -w src -w test --exec npm run ts-dev",
     "ts-dev": "ts-node test/test.ts",
     "testBuild": "node test/test.js",
     "build": "tsc --project tsconfig.json",
